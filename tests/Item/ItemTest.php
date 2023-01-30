@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Test;
+namespace App\Test\Item;
 
 use App\Exception\Item\InvalidNameException;
 use App\Exception\Item\InvalidPriceException;
@@ -34,7 +34,7 @@ class ItemTest extends TestCase
 
         $this->expectException(InvalidNameException::class);
 
-        $this->item->validateBusinessLogic($this->item->getName(), $this->item->getPrice());
+        $this->item->validate();
     }
 
     public function testItemHasPrice(): void
@@ -49,7 +49,7 @@ class ItemTest extends TestCase
 
         $this->expectException(InvalidPriceException::class);
 
-        $this->item->validateBusinessLogic($this->item->getName(), $this->item->getPrice());
+        $this->item->validate();
     }
 
 }

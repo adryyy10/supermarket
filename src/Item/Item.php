@@ -4,8 +4,9 @@ namespace App\Item;
 
 use App\Exception\Item\InvalidNameException;
 use App\Exception\Item\InvalidPriceException;
+use App\Shared\BusinessLogic;
 
-class Item
+final class Item extends BusinessLogic
 {
 
     private string $name;
@@ -41,13 +42,13 @@ class Item
         return $this;
     }
 
-    public function validateBusinessLogic(string $name, int $price): void
+    public function validate(): void
     {
-        if (empty($name)) {
+        if (empty($this->name)) {
             throw new InvalidNameException;
         }
 
-        if (empty($price)) {
+        if (empty($this->price)) {
             throw new InvalidPriceException;
         }
     }
