@@ -57,6 +57,7 @@ final class Item extends BusinessLogic implements PricingCalculatorInterface
     public function calculatePrice(array &$count): int
     {
         $count[$this->getName()]++;
+        
         if ($this->getName() === 'B') {
             return ($count[$this->getName()] % 2 != 0) ? 75 : 50;
         } else if ($this->getName() === 'C') {
