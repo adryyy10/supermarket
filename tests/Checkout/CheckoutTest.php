@@ -60,6 +60,20 @@ class CheckoutTest extends TestCase
         $this->assertEquals(125, $totalPrice);
     }
 
+    public function testCheckoutItemBSpecialPriceTWice(): void
+    {
+        $this->stock = new Stock([
+            new Item('B', 75),
+            new Item('B', 75),
+            new Item('B', 75),
+            new Item('B', 75),
+        ]); 
+        $totalPrice = $this->checkout->getTotalPrice($this->stock);
+
+        $this->assertIsFloat($totalPrice);
+        $this->assertEquals(250, $totalPrice);
+    }
+
     public function testCheckoutItemCSpecialPrice(): void
     {
         $this->stock = new Stock([
@@ -73,6 +87,25 @@ class CheckoutTest extends TestCase
 
         $this->assertIsFloat($totalPrice);
         $this->assertEquals(75, $totalPrice);
+    }
+
+    public function testCheckoutItemCSpecialPriceTwice(): void
+    {
+        $this->stock = new Stock([
+            new Item('C', 25),
+            new Item('C', 25),
+            new Item('C', 25),
+            new Item('C', 25),
+            new Item('C', 25),
+            new Item('C', 25),
+            new Item('C', 25),
+            new Item('C', 25),
+        ]);
+
+        $totalPrice = $this->checkout->getTotalPrice($this->stock);
+
+        $this->assertIsFloat($totalPrice);
+        $this->assertEquals(150, $totalPrice);
     }
 
     public function testCheckoutItemBSpecialPriceAndCSpecialPriceCombined(): void

@@ -23,10 +23,10 @@ final class Checkout
             foreach ($items as $item) {
                 if ($item->getName() === 'B') {
                     $countB++;
-                    $total += floor($countB / 2) * 50 + ($countB % 2) * 75;
+                    $total += ($countB % 2 != 0) ? 75 : 50;
                 } else if ($item->getName() === 'C') {
                     $countC++;
-                    $total += floor($countC / 4) * (-75) + ($countC % 4) * 25;
+                    $total += ($countC % 4 != 0) ? 25 : 0;
                 } else {
                     $total += $item->getPrice();
                 }
