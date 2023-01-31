@@ -4,9 +4,10 @@ namespace App\Item;
 
 use App\Exception\Item\InvalidNameException;
 use App\Exception\Item\InvalidPriceException;
+use App\Interfaces\PricingCalculatorInterface;
 use App\Shared\BusinessLogic;
 
-final class Item extends BusinessLogic
+final class Item extends BusinessLogic implements PricingCalculatorInterface
 {
 
     private string $name;
@@ -50,6 +51,18 @@ final class Item extends BusinessLogic
 
         if (empty($this->price)) {
             throw new InvalidPriceException;
+        }
+    }
+
+    public function calculatePrice(array &$count): int
+    {
+        $count[$this->getName()]++;
+        if ($this->getName() === 'B') {
+            return ($count[$this->getName()] % 2 != 0) ? 75 : 50;
+        } else if ($this->getName() === 'C') {
+            return ($count[$this->getName()] % 4 != 0) ? 25 : 0;
+        } else {
+            return $this->getPrice();
         }
     }
 }

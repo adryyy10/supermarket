@@ -2,6 +2,7 @@
 
 namespace App\Checkout;
 
+use App\Item\Item;
 use App\Stock\Stock;
 
 final class Checkout
@@ -17,21 +18,18 @@ final class Checkout
     public function addPricingRules()
     {
         $this->pricingRules[] = function (array $items) {
-            $countB = $countC = 0;
             $total = 0.0;
+            $count = [
+                "A" => 0,
+                "B" => 0,
+                "C" => 0 
+            ];
         
             foreach ($items as $item) {
-                if ($item->getName() === 'B') {
-                    $countB++;
-                    $total += ($countB % 2 != 0) ? 75 : 50;
-                } else if ($item->getName() === 'C') {
-                    $countC++;
-                    $total += ($countC % 4 != 0) ? 25 : 0;
-                } else {
-                    $total += $item->getPrice();
+                if ($item instanceof Item) {
+                    $total += $item->calculatePrice($count);
                 }
             }
-            
         
             return $total;
         };
