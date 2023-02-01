@@ -19,3 +19,6 @@ Regarding the tests, I have extended the **setUp()** method and I have also impl
 The tests check both the types of the variables and their outputs.
 
 ![Alt text](src/images/tests.PNG?raw=true "Tests passed")
+
+
+Ps: In a future, I think I should rename Stock entity to Cart because I think it has a more intuitive name.
