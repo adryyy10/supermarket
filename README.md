@@ -17,3 +17,5 @@ I've created an **Interface** called PricingCalculatorInterface that is extended
 
 Regarding the tests, I have extended the **setUp()** method and I have also implemented **@dataProvider** called itemProvider in the tests to make them more readable and intuitive. 
 The tests check both the types of the variables and their outputs.
+
+![Alt text](src/images/tests.PNG?raw=true "Tests passed")
